@@ -6,12 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Template</title>
+    <style>
+        .user{
+            background-color: lightsalmon;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 20px;
+            box-shadow: 5px 5px 10px lightslategray;
+        }
+    </style>
 </head>
 
 <body>
-    <ul id="user-list">
+    <div id="user-container">
 
-    </ul>
+    </div>
 
     <script>
         fetch("https://jsonplaceholder.typicode.com/users")
@@ -20,13 +29,18 @@
 
         function showUserNames(data) {
             // console.log(data);
-            let lists = '';
+            let usersHTML = '';
             data.forEach(user => {
-                lists = lists + `<li>${user.name}</li>`
+                usersHTML = usersHTML +
+                    `<div class="user">
+                    <h2>${user.name}</h2>
+                    <p>email: ${user.email}</p>
+                    <p>company: ${user.company.name}. ${user.company.catchPhrase}. ${user.company.bs}</p>
+                </div>`
             });
-            // console.log(lists);
-            const ul = document.getElementById('user-list');
-            ul.innerHTML = lists;
+            // console.log(usersHTML);
+            const userContainer = document.getElementById('user-container');
+            userContainer.innerHTML = usersHTML;
         }
     </script>
 </body>
